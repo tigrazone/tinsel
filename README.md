@@ -6,6 +6,12 @@ originally designed for rendering out physics based animations where turn around
 time is more important than generality. It is designed to be easy to set up
 animation sequences.
 
+TIGRAZONE version
+***********************
+* cpu only version. gpu version hardcoded off
+* openMP is added. on my 2-core cpu speedup to 160%(before openMP 4.7s per frame for ajax scene, after 2.9s)
+* little bit speedup for disneyBRDF pdf calculation
+
 Features
 --------
 
