@@ -36,6 +36,8 @@ Mat44 g_camTransform;
 float g_flySpeed = 0.5f;
 bool g_flyMode = false;
 
+size_t rsn =0; 
+
 // renderer
 Renderer* g_renderer;
 
@@ -185,10 +187,18 @@ void GLUTUpdate()
 }
 
 void GLUTReshape(int width, int height)
-{
+{		
+	//tigra: reshape reshape reshape error fix
+	if(rsn>0 && g_options.width == width && g_options.height == height)
+		return;
+	
+	rsn++;
+	
+	//printf("GLUTReshape InitFrameBuffer(%d, %d) was %d, %d\n", width, height, g_options.width, g_options.height);
+	
     g_options.width = width;
     g_options.height = height;
-
+	
     InitFrameBuffer();
 }
 
@@ -241,7 +251,7 @@ void GLUTKeyboardDown(unsigned char key, int x, int y)
         if (g_nlmWidth)
             g_nlmWidth = 0;
         else
-            g_nlmWidth = 3;
+            g_nlmWidth = 1;
         break;
     }
 	case 'i':
@@ -258,6 +268,7 @@ void GLUTKeyboardDown(unsigned char key, int x, int y)
     // reset image if there are any camera changes
     if (resetFrame == true)
     {
+		//printf("GLUTKeyboardDown InitFrameBuffer()\n");
         InitFrameBuffer();
     }
 }
@@ -308,6 +319,7 @@ void GLUTMotionFunc(int x, int y)
 
     if (g_options.mode == ePathTrace)
     {
+	//printf("GLUTMotionFunc InitFrameBuffer()\n");
         InitFrameBuffer();
     }
 }
