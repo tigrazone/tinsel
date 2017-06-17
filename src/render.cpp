@@ -300,6 +300,9 @@ struct CpuRenderer : public Renderer
 		{
 			for (int j=0; j < options.height; ++j)
 			{
+
+#pragma omp parallel for schedule(dynamic, 1)
+
 				for (int i=0; i < options.width; ++i)
 				{
 					Vec3 origin;

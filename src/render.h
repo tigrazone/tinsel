@@ -10,6 +10,8 @@ enum FilterType
 	eFilterGaussian
 };
 
+#define CUDA_CALLABLE
+
 struct Filter
 {
 	CUDA_CALLABLE Filter(FilterType type=eFilterGaussian, float width=1.0f, float falloff=2.0f) : type(type), width(width), falloff(falloff)
@@ -73,4 +75,4 @@ struct Renderer
 };
 
 Renderer* CreateCpuRenderer(const Scene* s);
-Renderer* CreateGpuRenderer(const Scene* s);
+//Renderer* CreateGpuRenderer(const Scene* s);

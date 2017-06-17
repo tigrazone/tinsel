@@ -143,6 +143,7 @@ CUDA_CALLABLE inline Color BRDFEval(const Material& mat, const Vec3& P, const Ve
     float LDotH = Dot(L,H);
 
     Vec3 Cdlin = Vec3(mat.color);
+
     float Cdlum = .3*Cdlin[0] + .6*Cdlin[1]  + .1*Cdlin[2]; // luminance approx.
 
     Vec3 Ctint = Cdlum > 0.0f ? Cdlin/Cdlum : Vec3(1); // normalize lum. to isolate hue+sat
@@ -152,15 +153,22 @@ CUDA_CALLABLE inline Color BRDFEval(const Material& mat, const Vec3& P, const Ve
     // Diffuse fresnel - go from 1 at normal incidence to .5 at grazing
     // and mix in diffuse retro-reflection based on roughness
     float FL = SchlickFresnel(NDotL), FV = SchlickFresnel(NDotV);
-    float Fd90 = 0.5 + 2.0f * LDotH*LDotH * mat.roughness;
+
+	float Fss90 = LDotH*LDotH*mat.roughness;
+
+    //float Fd90 = 0.5 + 2.0f * LDotH*LDotH * mat.roughness;
+	float Fd90 = 0.5 + (Fss90+Fss90);
+
     float Fd = Lerp(1.0f, Fd90, FL) * Lerp(1.0f, Fd90, FV);
 
     // Based on Hanrahan-Krueger brdf approximation of isotrokPic bssrdf
     // 1.25 scale is used to (roughly) preserve albedo
     // Fss90 used to "flatten" retroreflection based on roughness
-    float Fss90 = LDotH*LDotH*mat.roughness;
+    //float Fss90 = LDotH*LDotH*mat.roughness;
     float Fss = Lerp(1.0f, Fss90, FL) * Lerp(1.0f, Fss90, FV);
     float ss = 1.25 * (Fss * (1.0f / (NDotL + NDotV) - .5) + .5);
+	//2* vs 5*  -3*
+
 
     // specular
     //float aspect = sqrt(1-mat.anisotrokPic*.9);

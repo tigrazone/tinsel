@@ -163,10 +163,13 @@ void InitFrameBuffer()
 
 void Init()
 {
-#if _WIN32
+#if 1 
+/*
+_WIN32
     // create renderer
     g_renderer = CreateGpuRenderer(&g_scene);
 #else
+	*/
     g_renderer = CreateCpuRenderer(&g_scene);
 #endif
 
@@ -328,8 +331,11 @@ int main(int argc, char* argv[])
     g_options.width = 512;
     g_options.height = 256;
     g_options.filter = Filter(eFilterGaussian, 1.1f, 1.0f);
-    g_options.mode = eNormals;
-    g_options.exposure = 1.0f;
+	
+    //g_options.mode = eNormals;
+    g_options.mode = ePathTrace;
+    
+	g_options.exposure = 1.0f;
     g_options.limit = 1.5f;
 	g_options.clamp = FLT_MAX;
 	g_options.maxDepth = 4;
