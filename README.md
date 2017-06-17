@@ -15,6 +15,7 @@ TODO:
 - nanoRT scene accelelerator
 - tinyobjloader with my speedups
 - lodePNG for save png
+- openCL version
 
 Features
 --------
