@@ -33,10 +33,13 @@
     <ClCompile Include="src\platform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\render.cpp">
+    <ClCompile Include="src\png.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\png.cpp">
+    <ClCompile Include="src\nlm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,10 +113,5 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="src\render.cu">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>
