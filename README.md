@@ -11,6 +11,10 @@ TIGRAZONE version
 * cpu only version. gpu version hardcoded off
 * openMP is added. on my 2-core cpu speedup to 160%(before openMP 4.7s per frame for ajax scene, after 2.9s)
 * little bit speedup for disneyBRDF pdf calculation
+TODO:
+- nanoRT scene accelelerator
+- tinyobjloader with my speedups
+- lodePNG for save png
 
 Features
 --------
