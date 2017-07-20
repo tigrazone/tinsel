@@ -1,0 +1,4 @@
+* nanort scene accelerator for triangles
+* tinyobjloader with my speedups for obj/mtl loader
+* nanort scene accelerator for spheres
+* advanced(obj/mtl) material
